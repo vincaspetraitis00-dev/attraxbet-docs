@@ -1,0 +1,25 @@
+site_name: "AttraxBet Docs"
+
+theme:
+  name: material
+  logo: Alogo.png          # must match docs/Alogo.png EXACTLY (case-sensitive)
+  favicon: Alogo.png       # optional: same image for browser tab
+
+extra:
+  homepage: https://attrax.bet/
+
+extra_css:
+  - overrides/extra.css
+
+extra_javascript:
+  - overrides/extra.js
+
+nav:
+  - Home: index.md
+  - Fairness: fairness.md
+  - Games: games.md
+  - AttraXPoints: attraxpoints.md
+  - Contact: contact.md
+
+plugins: []
+

@@ -1,0 +1,110 @@
+/* Set global background */
+.md-container {
+  background-color: #1E2738 !important;
+}
+
+/* Headings (h1, h2, h3...) */
+h1, h2, h3, h4, h5, h6 {
+  color: #55DDAA !important;
+}
+
+/* Normal text */
+body, .md-typeset {
+  color: #FFFFFF !important;
+}
+/* Top navigation bar */
+.md-header {
+  background-color: #1E2738 !important;
+}
+
+/* Sidebar background */
+.md-sidebar {
+  background-color: #1E2738 !important;
+}
+
+/* Sidebar text */
+.md-nav__title, .md-nav__link {
+  color: #FFFFFF !important;
+}
+
+/* Active link highlight */
+.md-nav__link--active {
+  color: #55DDAA !important;
+}
+/* Top navigation bar */
+.md-header {
+  background-color: #1E2738 !important;
+}
+
+/* Sidebar background */
+.md-sidebar {
+  background-color: #1E2738 !important;
+}
+
+/* Sidebar text */
+.md-nav__title, .md-nav__link {
+  color: #FFFFFF !important;
+}
+
+/* Active link highlight */
+.md-nav__link--active {
+  color: #55DDAA !important;
+}
+/* Top navigation bar */
+.md-header {
+  background-color: #1E2738 !important;
+}
+
+/* Sidebar background */
+.md-sidebar {
+  background-color: #1E2738 !important;
+}
+
+/* Sidebar text */
+.md-nav__title, .md-nav__link {
+  color: #FFFFFF !important;
+}
+
+/* Active link highlight */
+.md-nav__link--active {
+  color: #55DDAA !important;
+}
+/* Top navigation bar */
+.md-header {
+  background-color: #1E2738 !important;
+}
+
+/* Sidebar background */
+.md-sidebar {
+  background-color: #1E2738 !important;
+}
+
+/* Sidebar text */
+.md-nav__title, .md-nav__link {
+  color: #FFFFFF !important;
+}
+
+/* Active link highlight */
+.md-nav__link--active {
+  color: #55DDAA !important;
+}
+/* Top navigation bar */
+.md-header {
+  background-color: #1E2738 !important;
+}
+
+/* Sidebar background */
+.md-sidebar {
+  background-color: #1E2738 !important;
+}
+
+/* Sidebar text */
+.md-nav__title, .md-nav__link {
+  color: #FFFFFF !important;
+}
+
+/* Active link highlight */
+.md-nav__link--active {
+  color: #55DDAA !important;
+}
+

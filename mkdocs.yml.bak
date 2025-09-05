@@ -1,0 +1,11 @@
+site_name: "AttraxBet Docs"
+theme:
+  name: "material"
+logo: Alogo.png
+
+extra:
+  homepage: https://attrax.bet/
+
+extra_css:
+  - overrides/extra.css
+
