@@ -1,0 +1,218 @@
+/* ==== Theme colors ==== */
+.md-container, .md-header, .md-sidebar { background-color: #1E2738 !important; }
+h1, h2, h3, h4, h5, h6 { color: #55DDAA !important; }
+body, .md-typeset, .md-nav__title, .md-nav__link { color: #FFFFFF !important; }
+.md-nav__link--active { color: #55DDAA !important; }
+
+/* ===== Header logo: grow to 2x on hover-in, shrink on hover-out ===== */
+.md-header { 
+  overflow: visible;                  /* prevents clipping when 2x */
+}
+
+.md-header .md-logo img {
+  height: 28px;                       /* base size */
+  transform: scale(1);
+  transform-origin: center;
+  will-change: transform;
+}
+
+/* When hovering: grow + spin clockwise */
+.md-header .md-logo img.ab-grow {
+  animation: ab-grow-spin 0.6s ease-out 1 both;
+}
+
+/* When leaving: shrink + spin counter-clockwise */
+.md-header .md-logo img.ab-shrink {
+  animation: ab-shrink-spin 0.6s ease-out 1 both;
+}
+
+/* Keyframes */
+@keyframes ab-grow-spin {
+  from { transform: scale(1) rotate(0deg); }
+  to   { transform: scale(2) rotate(360deg); }
+}
+
+@keyframes ab-shrink-spin {
+  from { transform: scale(2) rotate(0deg); }
+  to   { transform: scale(1) rotate(-360deg); }
+}
+
+/* Accessibility: disable motion if user prefers */
+@media (prefers-reduced-motion: reduce) {
+  .md-header .md-logo img,
+  .md-header .md-logo img.ab-grow,
+  .md-header .md-logo img.ab-shrink {
+    animation: none !important;
+    transform: scale(1) !important;
+  }
+}
+
+
+/* Accessibility: reduce motion if user prefers */
+@media (prefers-reduced-motion: reduce) {
+  .md-header .md-logo img,
+  .md-header .md-logo:hover img {
+    animation: none !important;
+    transform: none !important;
+  }
+}
+/* Sticky header page title (shows when you scroll) */
+.md-header__title,
+.md-header__title .md-ellipsis,
+.md-header__title a,
+[data-md-component="header-title"] .md-ellipsis {
+  color: #55DDAA !important;
+}
+
+/* Optional: keep same color on hover/focus */
+.md-header__title a:hover,
+.md-header__title a:focus {
+  color: #55DDAA !important;
+  text-decoration: none;
+}
+
+/* Hide the right sidebar (Table of contents) */
+.md-sidebar--secondary {
+  display: none !important;
+}
+
+/* Let content expand when the right sidebar is hidden */
+@media screen and (min-width: 76.25em) { /* wide screens */
+  .md-main__inner {
+    grid-template-columns: minmax(0, 1fr) !important; /* single column */
+  }
+}
+
+/* Darken code blocks / inline code */
+:root {
+  --md-code-bg-color: #0f1726;  /* background for code blocks */
+  --md-code-fg-color: #e6eef7;  /* text color inside code */
+}
+
+.md-typeset pre,
+.md-typeset code,
+.md-typeset .highlight,
+.md-typeset .codehilite {
+  background: var(--md-code-bg-color) !important;
+  color: var(--md-code-fg-color) !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+/* ==== Centered hero on homepage ==== */
+.ab-hero {
+  max-width: 900px;
+  margin: 0 auto;
+  text-align: center;
+  padding: 2rem 1rem 1rem;
+  animation: ab-fade-in 400ms ease-out both;
+}
+
+.ab-actions {
+  display: inline-flex;
+  gap: 0.75rem;
+  margin-top: 1rem;
+}
+
+/* Buttons */
+.ab-btn {
+  display: inline-block;
+  padding: 0.6rem 1rem;
+  border-radius: 9999px;
+  background: #55DDAA;
+  color: #0f1726 !important;
+  font-weight: 600;
+  text-decoration: none !important;
+  border: 2px solid #55DDAA;
+  transition: transform 0.15s ease, opacity 0.15s ease;
+}
+.ab-btn:hover { transform: translateY(-1px); opacity: 0.95; }
+
+.ab-btn.ab-outline {
+  background: transparent;
+  color: #FFFFFF !important;
+  border-color: #55DDAA;
+}
+
+/* Subtle entrance */
+@keyframes ab-fade-in {
+  from { opacity: 0; transform: translateY(6px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* === Sticky header title: keep position & font identical to site title === */
+/* When scrolled, hide the link's real text and draw our custom text on it */
+html.ab-scrolled [data-md-component="header-title"] a {
+  color: transparent !important;         /* hide original text */
+  overflow: visible !important;
+  max-width: none !important;
+  -webkit-mask-image: none !important;
+  mask-image: none !important;
+  white-space: nowrap !important;        /* single line */
+  position: relative;                    /* anchor for ::after */
+}
+
+/* Inject our text directly on the same anchor so placement & font are identical */
+html.ab-scrolled [data-md-component="header-title"] a::after {
+  content: "Leading Casino on Abstract";
+  position: absolute;
+  inset: 0;                               /* same box as the link */
+  color: #55DDAA !important;              /* mint */
+  font-weight: 600;                        /* slight bold like the site title */
+  font-size: inherit;                      /* same size as site title */
+  line-height: inherit;                    /* same vertical alignment */
+  white-space: nowrap;
+  pointer-events: none;                    /* clicks still go to the link */
+}
+
+/* --- kill any white/grey surfaces on the left/content edge --- */
+
+/* A) remove the faint top shadow under the header */
+.md-content__inner:before {
+  display: none !important;
+}
+
+/* B) make horizontal rules dark instead of bright */
+.md-typeset hr {
+  border: 0 !important;
+  height: 1px !important;
+  background: #243042 !important; /* subtle dark line */
+  box-shadow: none !important;
+}
+
+/* C) remove any white/raised background in the left sidebar */
+.md-sidebar--primary,
+.md-sidebar--primary .md-sidebar__scrollwrap,
+.md-sidebar--primary .md-nav,
+.md-nav__title {
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+/* D) ensure active/hovered left-nav items don't get pale backgrounds */
+.md-nav__link,
+.md-nav__link:hover,
+.md-nav__link--active,
+.md-nav__link--active:hover {
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+/* E) if your theme is adding a card-like block around content, flatten it */
+.md-main, .md-main__inner, .md-content {
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+/* Optional: if you actually want to HIDE the entire left sidebar, uncomment:
+.md-sidebar--primary { display: none !important; }
+@media screen and (min-width: 76.25em) {
+  .md-main__inner { grid-template-columns: minmax(0, 1fr) !important; }
+}
+*/
+
+/* Hide the entire footer bar */
+.md-footer {
+  display: none !important;
+}
+
