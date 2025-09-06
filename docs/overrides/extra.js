@@ -158,13 +158,6 @@ document.addEventListener("DOMContentLoaded", () => {
     if (isInternalLink(a) && !isSamePage(a)) showLoader();
   }, true);
 
-  // B) For drawer links (mobile): show on CLICK so the nav can proceed
-  document.addEventListener("click", (e) => {
-    const a = e.target.closest && e.target.closest("a");
-    if (!a || !inDrawer(a)) return;
-    if (isInternalLink(a) && !isSamePage(a)) showLoader();
-  }, true);
-
   // C) Keyboard nav on links anywhere
   document.addEventListener("keydown", (e) => {
     if (e.key !== "Enter" && e.key !== " ") return;

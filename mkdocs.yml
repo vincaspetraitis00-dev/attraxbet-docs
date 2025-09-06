@@ -1,16 +1,18 @@
-site_name: "AttraxBet Docs"
+site_name: AttraxBet Docs
 
 theme:
   name: material
-  logo: Alogo.png          # must match docs/Alogo.png EXACTLY (case-sensitive)
-  favicon: Alogo.png       # optional: same image for browser tab
+  features:
+    - navigation.instant
+    - navigation.tracking
+  logo: Alogo.png        # must exist in docs/
+  favicon: Alogo.png     # optional; same image is fine
 
 extra:
   homepage: https://attrax.bet/
 
 extra_css:
   - overrides/extra.css
-
 extra_javascript:
   - overrides/extra.js
 
