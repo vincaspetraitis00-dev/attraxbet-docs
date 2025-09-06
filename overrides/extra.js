@@ -50,9 +50,9 @@ document.addEventListener("DOMContentLoaded", () => {
   obs.observe(document.body, { childList: true, subtree: true });
 });
 
-/* === 3) Page loader: coin-only, no bar, smooth & no blink === */
+/* === 3) Page loader: coin-only, mobile-drawer safe, with watchdog === */
 document.addEventListener("DOMContentLoaded", () => {
-  // Elements (overlay stays in <body> across Material's instant nav)
+  // Elements
   const overlay = document.createElement("div");
   overlay.id = "ab-loader";
   const coin = document.createElement("img");
@@ -60,7 +60,7 @@ document.addEventListener("DOMContentLoaded", () => {
   coin.decoding = "async";
   coin.loading = "eager";
 
-  // Resolve site base so /assets works locally + GitHub Pages subpaths
+  // Resolve base for /assets (GitHub Pages subpaths)
   function abSiteBase() {
     const cfg = document.getElementById("__config");
     if (cfg) {
@@ -78,7 +78,7 @@ document.addEventListener("DOMContentLoaded", () => {
     return "/";
   }
 
-  // Image source + preload (prevents first-show flicker)
+  // Image + preload
   const coinPath = abSiteBase() + "assets/img/attrax-coin.png";
   coin.src = coinPath;
   new Image().src = coinPath;
@@ -90,34 +90,44 @@ document.addEventListener("DOMContentLoaded", () => {
   overlay.appendChild(coin);
   document.body.appendChild(overlay);
 
-  // --- State
-  const MIN_MS = 1200;             // feel free to set 1500–2000 for more presence
+  // ---- State
+  const MIN_MS = 1500;     // set 2000–3000 if you want longer
+  const DEBOUNCE_MS = 150; // ignore duplicate triggers
   let visible = false;
   let minHideAt = 0;
-  let hideTimer = null;
   let lastShowAt = 0;
+  let hideTimer = null;
+  let navWatchdog = null;
+
+  function armWatchdog(ms = 2500) {
+    clearTimeout(navWatchdog);
+    navWatchdog = setTimeout(() => hideLoader(), ms);
+  }
+  function disarmWatchdog() {
+    clearTimeout(navWatchdog);
+    navWatchdog = null;
+  }
 
   function showLoader() {
     const now = performance.now();
-    // Debounce: ignore repeated triggers within 150ms
-    if (visible || (now - lastShowAt) < 150) return;
+    if (visible || (now - lastShowAt) < DEBOUNCE_MS) return;
     lastShowAt = now;
-
     visible = true;
     minHideAt = now + MIN_MS;
     overlay.classList.add("show");
+    armWatchdog(); // if nav doesn't happen, auto-hide
   }
 
   function hideLoader() {
-if (!visible) return;
-const wait = Math.max(0, minHideAt - performance.now());
-clearTimeout(hideTimer);
-hideTimer = setTimeout(() => {
-overlay.classList.remove("show");
-visible = false;
-}, wait);
-}
-
+    if (!visible) return;
+    disarmWatchdog();
+    const wait = Math.max(0, minHideAt - performance.now());
+    clearTimeout(hideTimer);
+    hideTimer = setTimeout(() => {
+      overlay.classList.remove("show");
+      visible = false;
+    }, wait);
+  }
 
   // Helpers
   function isInternalLink(a) {
@@ -130,31 +140,75 @@ visible = false;
       return u.origin === location.origin;
     } catch { return false; }
   }
+  function isSamePage(a) {
+    try {
+      const u = new URL(a.href, location.href);
+      return u.origin === location.origin &&
+             u.pathname === location.pathname &&
+             (u.hash || "") === (location.hash || "");
+    } catch { return false; }
+  }
+  const inDrawer = (el) => !!(el && el.closest(".md-drawer")); // mobile nav drawer
 
-  // --- Triggers (no blink):
-  // 1) pointerdown: show immediately so it’s on before the page swap
+  // ---- Triggers
+  // A) For everything NOT in the drawer: show on pointerdown (no blink)
   document.addEventListener("pointerdown", (e) => {
     const a = e.target.closest && e.target.closest("a");
-    if (isInternalLink(a)) showLoader();
+    if (!a || inDrawer(a)) return;                      // drawer handled by click
+    if (isInternalLink(a) && !isSamePage(a)) showLoader();
   }, true);
 
-  // 2) keyboard nav on links
+  // B) For drawer links (mobile): show on CLICK so the nav can proceed
+  document.addEventListener("click", (e) => {
+    const a = e.target.closest && e.target.closest("a");
+    if (!a || !inDrawer(a)) return;
+    if (isInternalLink(a) && !isSamePage(a)) showLoader();
+  }, true);
+
+  // C) Keyboard nav on links anywhere
   document.addEventListener("keydown", (e) => {
     if (e.key !== "Enter" && e.key !== " ") return;
     const a = document.activeElement && document.activeElement.closest && document.activeElement.closest("a");
-    if (isInternalLink(a)) showLoader();
+    if (a && isInternalLink(a) && !isSamePage(a)) showLoader();
   }, true);
 
-  // 3) When Material finishes rendering the next page, hide (respects MIN_MS)
+  // D) Back/forward and hard navigations
+  window.addEventListener("popstate", showLoader);
+  window.addEventListener("beforeunload", showLoader);
+
+  // E) Hide after Material renders (SPA) — MIN_MS still enforced
   if (window.document$ && typeof window.document$.subscribe === "function") {
-    window.document$.subscribe(() => { hideLoader(); });
+    window.document$.subscribe(() => hideLoader());
   } else {
-    // Full reload fallback
-    window.addEventListener("load", hideLoader);
+    window.addEventListener("load", hideLoader, { once: true });
   }
 
-  // 4) Browser back/forward should also show/hide
-  window.addEventListener("popstate", showLoader);
-  window.addEventListener("beforeunload", showLoader); // hard navs too
+  // F) Safety: if DOM mutates a lot post-nav, attempt hide (still respects MIN_MS)
+  const mo = new MutationObserver(() => { if (visible) hideLoader(); });
+  mo.observe(document.body, { childList: true, subtree: true });
+});
+
+// --- Keep the drawer clean: remove the extra TOC row/label/icon next to the active item
+document.addEventListener("DOMContentLoaded", () => {
+  const killTocBits = () => {
+    document.querySelectorAll(
+      // the label-row that toggles the __toc checkbox (shows the little icon)
+      '#__toc + label.md-nav__link[for="__toc"],' +
+      // any stray label wired to __toc
+      'label[for="__toc"],' +
+      // button variant some builds use
+      '.md-drawer .md-nav__item--active > .md-nav__button[for="__toc"]'
+    ).forEach(n => n.remove());
+  };
+
+  killTocBits();
+
+  // After each Material SPA render
+  if (window.document$ && typeof window.document$.subscribe === "function") {
+    window.document$.subscribe(killTocBits);
+  }
+
+  // Watch for drawer mutations (late injection)
+  new MutationObserver(killTocBits).observe(document.body, { childList: true, subtree: true });
 });
 

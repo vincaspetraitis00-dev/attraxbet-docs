@@ -298,3 +298,28 @@ html.ab-scrolled [data-md-component="header-title"] a::after {
 /* Let clicks pass through the loader overlay so nav still happens */
 #ab-loader { pointer-events: none !important; }
 
+/* === TOC cleanup (header + drawer + sidebars) === */
+
+/* 1) Header TOC button (all variants) */
+.md-header [data-md-component="toc"],
+.md-header .md-header__button[for="__toc"],
+.md-header .md-header__button.md-icon[data-md-toggle="toc"],
+.md-header .md-header__button.md-icon[aria-label="Table of contents"] {
+  display: none !important;
+}
+
+/* 2) Drawer (mobile): remove the extra TOC row that shows an icon next to active item */
+#\_\_toc + label.md-nav__link[for="__toc"],
+label[for="__toc"],
+.md-drawer .md-nav__item--active > .md-nav__button[for="__toc"] {
+  display: none !important;
+}
+
+/* 3) Left nav (desktop): hide the nested in-page TOC under the active item (removes the gap) */
+.md-nav--primary .md-nav__item--active .md-nav--secondary {
+  display: none !important;
+}
+
+/* 4) (Optional) Right-hand TOC sidebar — hide if you don't want it at all */
+.md-sidebar--secondary { display: none !important; }
+
