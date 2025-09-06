@@ -50,17 +50,12 @@ document.addEventListener("DOMContentLoaded", () => {
   obs.observe(document.body, { childList: true, subtree: true });
 });
 
-/* === 3) Page loader: coin-only, mobile-drawer safe, with watchdog === */
+/* === Page loader: desktop full loader; mobile tiny post-render pulse === */
 document.addEventListener("DOMContentLoaded", () => {
-  // Elements
-  const overlay = document.createElement("div");
-  overlay.id = "ab-loader";
-  const coin = document.createElement("img");
-  coin.className = "ab-coin";
-  coin.decoding = "async";
-  coin.loading = "eager";
+  // Detect touch/mobile
+  const isTouch = window.matchMedia("(pointer: coarse)").matches;
 
-  // Resolve base for /assets (GitHub Pages subpaths)
+  // Resolve base for /assets (works locally + GitHub Pages subpaths)
   function abSiteBase() {
     const cfg = document.getElementById("__config");
     if (cfg) {
@@ -78,6 +73,61 @@ document.addEventListener("DOMContentLoaded", () => {
     return "/";
   }
 
+  /* --------------------- MOBILE: tiny pulse (non-blocking) --------------------- */
+  if (isTouch) {
+    const overlay = document.createElement("div");
+    overlay.id = "ab-loader";
+    const coin = document.createElement("img");
+    coin.className = "ab-coin";
+    coin.decoding = "async";
+    coin.loading = "eager";
+
+    const coinPath = abSiteBase() + "assets/img/attrax-coin.png";
+    coin.src = coinPath;
+    new Image().src = coinPath; // preload
+    coin.addEventListener("error", () => {
+      const logo = document.querySelector(".md-header .md-logo img");
+      if (logo && logo.src) coin.src = logo.src;
+    });
+
+    overlay.appendChild(coin);
+    document.body.appendChild(overlay);
+
+    const PULSE_MS = 500;   // how long the coin is visible
+    const DELAY_MS = 50;    // start a beat after render to feel smoother
+    let showT, hideT;
+
+    const pulse = () => {
+      clearTimeout(showT);
+      clearTimeout(hideT);
+      showT = setTimeout(() => {
+        overlay.classList.add("show");
+        hideT = setTimeout(() => overlay.classList.remove("show"), PULSE_MS);
+      }, DELAY_MS);
+    };
+
+    // First load + bfcache restores
+    window.addEventListener("load", pulse);
+    window.addEventListener("pageshow", (e) => { if (e.persisted) pulse(); });
+
+    // After each Material SPA page render
+    if (window.document$ && typeof window.document$.subscribe === "function") {
+      window.document$.subscribe(pulse);
+    }
+
+    // Important: stop here — no desktop handlers on mobile
+    return;
+  }
+
+  /* --------------------- DESKTOP: full loader --------------------- */
+  // Elements
+  const overlay = document.createElement("div");
+  overlay.id = "ab-loader";
+  const coin = document.createElement("img");
+  coin.className = "ab-coin";
+  coin.decoding = "async";
+  coin.loading = "eager";
+
   // Image + preload
   const coinPath = abSiteBase() + "assets/img/attrax-coin.png";
   coin.src = coinPath;
@@ -90,8 +140,8 @@ document.addEventListener("DOMContentLoaded", () => {
   overlay.appendChild(coin);
   document.body.appendChild(overlay);
 
-  // ---- State
-  const MIN_MS = 1500;     // set 2000–3000 if you want longer
+  // State
+  const MIN_MS = 1500;     // adjust to 2000–3000 if you want longer
   const DEBOUNCE_MS = 150; // ignore duplicate triggers
   let visible = false;
   let minHideAt = 0;
@@ -115,7 +165,7 @@ document.addEventListener("DOMContentLoaded", () => {
     visible = true;
     minHideAt = now + MIN_MS;
     overlay.classList.add("show");
-    armWatchdog(); // if nav doesn't happen, auto-hide
+    armWatchdog(); // if nav stalls, auto-hide
   }
 
   function hideLoader() {
@@ -148,38 +198,39 @@ document.addEventListener("DOMContentLoaded", () => {
              (u.hash || "") === (location.hash || "");
     } catch { return false; }
   }
-  const inDrawer = (el) => !!(el && el.closest(".md-drawer")); // mobile nav drawer
+  const inDrawer = (el) => !!(el && el.closest(".md-drawer"));
 
-  // ---- Triggers
-  // A) For everything NOT in the drawer: show on pointerdown (no blink)
+  // Triggers
+  // Show on pointerdown for non-drawer links (no blink)
   document.addEventListener("pointerdown", (e) => {
     const a = e.target.closest && e.target.closest("a");
-    if (!a || inDrawer(a)) return;                      // drawer handled by click
+    if (!a || inDrawer(a)) return;
     if (isInternalLink(a) && !isSamePage(a)) showLoader();
   }, true);
 
-  // C) Keyboard nav on links anywhere
+  // Keyboard nav
   document.addEventListener("keydown", (e) => {
     if (e.key !== "Enter" && e.key !== " ") return;
     const a = document.activeElement && document.activeElement.closest && document.activeElement.closest("a");
     if (a && isInternalLink(a) && !isSamePage(a)) showLoader();
   }, true);
 
-  // D) Back/forward and hard navigations
+  // History + hard navigations
   window.addEventListener("popstate", showLoader);
   window.addEventListener("beforeunload", showLoader);
 
-  // E) Hide after Material renders (SPA) — MIN_MS still enforced
+  // Hide after Material SPA render (honors MIN_MS)
   if (window.document$ && typeof window.document$.subscribe === "function") {
     window.document$.subscribe(() => hideLoader());
   } else {
     window.addEventListener("load", hideLoader, { once: true });
   }
 
-  // F) Safety: if DOM mutates a lot post-nav, attempt hide (still respects MIN_MS)
+  // Safety: if DOM mutates a lot, attempt hide (still respects MIN_MS)
   const mo = new MutationObserver(() => { if (visible) hideLoader(); });
   mo.observe(document.body, { childList: true, subtree: true });
 });
+
 
 // --- Keep the drawer clean: remove the extra TOC row/label/icon next to the active item
 document.addEventListener("DOMContentLoaded", () => {
