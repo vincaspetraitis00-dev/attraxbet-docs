@@ -253,3 +253,48 @@ html.ab-scrolled [data-md-component="header-title"] a::after {
 .md-sidebar--primary .md-sidebar__scrollwrap,
 .md-nav { background-color: #1E2738 !important; }
 
+/* Hide the tiny "TOC" toggle icon next to current page in the drawer */
+.md-sidebar--primary .md-nav__button,
+.md-sidebar--primary .md-nav__title .md-nav__button,
+.md-sidebar--primary .md-nav__item .md-nav__button,
+.md-drawer .md-nav__button {
+  display: none !important;
+}
+
+/* Tidy spacing after removing the icon */
+.md-sidebar--primary .md-nav__link {
+  padding-right: 1rem !important;
+}
+
+/* ===== AttraxBet page loader ===== */
+#ab-loader {
+  position: fixed; inset: 0; z-index: 9999;
+  display: none; align-items: center; justify-content: center;
+  background: rgba(10, 14, 22, 0.65);   /* frosty dark glass */
+  backdrop-filter: blur(2px);
+}
+#ab-loader.show { display: flex; animation: ab-fade-in .12s ease-out both; }
+
+#ab-loader .ab-coin {
+  width: 160px; height: 160px;
+  animation: ab-spin 0.7s linear infinite;
+  will-change: transform;
+  filter: drop-shadow(0 6px 18px rgba(0,0,0,.35));
+}
+
+/* top progress bar */
+#ab-progress {
+  position: fixed; top: 0; left: 0; height: 3px; width: 0;
+  background: #55DDAA; z-index: 10000; pointer-events: none;
+  transition: width .25s ease;
+}
+
+@keyframes ab-spin { from { transform: rotate(0deg) } to { transform: rotate(360deg) } }
+@keyframes ab-fade-in { from { opacity: 0 } to { opacity: 1 } }
+
+/* Disable the top progress bar */
+#ab-progress { display: none !important; }
+
+/* Let clicks pass through the loader overlay so nav still happens */
+#ab-loader { pointer-events: none !important; }
+
