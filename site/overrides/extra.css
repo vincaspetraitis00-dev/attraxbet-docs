@@ -216,3 +216,40 @@ html.ab-scrolled [data-md-component="header-title"] a::after {
   display: none !important;
 }
 
+/* ===== Mobile drawer fixes ===== */
+@media (max-width: 76.24em) { /* phones & small tablets */
+
+  /* Dark drawer + text */
+  .md-sidebar--primary,
+  .md-sidebar--primary .md-sidebar__scrollwrap,
+  .md-nav,
+  .md-nav__list,
+  .md-nav__item,
+  .md-nav__link {
+    background-color: #1E2738 !important;
+    color: #FFFFFF !important;
+  }
+
+  /* Hover/active states in drawer */
+  .md-nav__link:hover,
+  .md-nav__link--active {
+    background: rgba(255,255,255,0.06) !important;
+    color: #55DDAA !important;
+  }
+
+  /* Hide the tiny "TOC" button that appears next to the current page in drawer */
+  .md-nav__item .md-nav__button {
+    display: none !important;
+  }
+
+  /* Dim the overlay behind the drawer for contrast */
+  .md-overlay {
+    background: rgba(0,0,0,0.5) !important;
+  }
+}
+
+/* Make sure desktop sidebar remains dark too */
+.md-sidebar--primary,
+.md-sidebar--primary .md-sidebar__scrollwrap,
+.md-nav { background-color: #1E2738 !important; }
+
