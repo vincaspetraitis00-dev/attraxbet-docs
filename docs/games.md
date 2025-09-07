@@ -1,10 +1,25 @@
-# Games
 
-A quick peek at what you can play on AttraxBet.
+<div class="ab-hero ab-hero-fairness">
+		<div class="ab-subtitle ab-fairness-highlight">Play fast. Play fair. Play on-chain.</div>
+	<p>
+		Attrax.Bet offers a growing collection of on-chain casino games. Each game is simple to play, fast to settle, and designed with our frosty theme in mind.
+	</p>
+</div>
 
-- **Coin Flip** — lightning rounds, instant payouts.
-- **Mines** — pick tiles, avoid bombs, cash out anytime.
-- **Lucky Wheel** — multipliers up to 50×.
-- **Slots** — icy reels, frosty bonus rounds.
 
-> Placeholder: add screenshots, RTP tables, and links to individual game docs later.
+<ul class="ab-fairness-list">
+	<li>🪙 <b class="ab-green">Coinflip</b><br>Our flagship game — pick heads or tails, place your wager, and let the blockchain decide. Every flip is quick, transparent, and verifiable, making Coinflip the perfect starting point for new players.</li>
+	<li class="ab-blur">🎰 <b class="ab-green">ComingSoonComingSoonComingSoon</b><br>ComingSoonComingSoonComingSoonComingSoonComingSoonComingSoonComingSoonComingSoon</li>
+	<li class="ab-blur">🎡 <b class="ab-green">ComingSoonComingSoonComingSoon</b><br>ComingSoonComingSoonComingSoonComingSoonComingSoonComingSoonComingSoonComingSoon</li>
+</ul>
+
+<div class="ab-games-section">
+	<div class="ab-subtitle ab-green" style="font-size:1.3rem; margin-top:2.5rem;">🏆 Competitions & Leaderboards</div>
+	<div style="margin-bottom:1.5rem;">
+		Attrax.Bet goes beyond single spins and flips. Take part in competitions, climb the leaderboards, and compete for seasonal rewards. Rankings are based on real on-chain results, giving everyone a fair shot at the top.
+	</div>
+	<div class="ab-subtitle ab-green" style="font-size:1.3rem; margin-top:2.5rem;">🎲 Coming Soon</div>
+	<div style="margin-bottom:1.5rem;">
+		We’re working on expanding our library with new games like dice, blackjack, and roulette — all carrying the same fast, transparent, and verifiable design.
+	</div>
+</div>

@@ -1,3 +1,38 @@
+function setupBulletsAnimation() {
+  document.querySelectorAll('.ab-fairness-list').forEach(fairnessList => {
+    const items = Array.from(fairnessList.querySelectorAll('li'));
+    // Hide all items initially
+    items.forEach(li => {
+      li.style.opacity = '0';
+      li.style.transform = 'translateY(40px)';
+      li.style.animation = 'none';
+      li.style.visibility = 'hidden';
+    });
+    let started = false;
+    function revealBullets() {
+      if (started) return;
+      const rect = fairnessList.getBoundingClientRect();
+      if (rect.top < window.innerHeight && rect.bottom > 0) {
+        started = true;
+        items.forEach((li, i) => {
+          setTimeout(() => {
+            li.style.visibility = 'visible';
+            li.style.animation = 'ab-fade-in-up 1.2s cubic-bezier(.23,1.02,.58,.99) forwards';
+            li.style.animationPlayState = 'running';
+          }, i * 350);
+        });
+        window.removeEventListener('scroll', revealBullets);
+        window.removeEventListener('resize', revealBullets);
+      }
+    }
+    window.addEventListener('scroll', revealBullets);
+    window.addEventListener('resize', revealBullets);
+  });
+}
+document.addEventListener('DOMContentLoaded', setupBulletsAnimation);
+if (window.document$ && typeof window.document$.subscribe === 'function') {
+  window.document$.subscribe(setupBulletsAnimation);
+}
 // Aggressively prevent updating the URL hash on scroll or navigation (MkDocs Material)
 (function() {
   function removeHash() {
@@ -33,25 +68,27 @@
   // Remove hash on DOMContentLoaded (initial load)
   document.addEventListener('DOMContentLoaded', removeHash);
 })();
-document.addEventListener("DOMContentLoaded", () => {
+
+// Robust spinning logo effect on hover
+function attachLogoSpin() {
   const img = document.querySelector(".md-header .md-logo img");
   if (!img) return;
-
-  // Hover in: play grow+spin (clockwise)
   img.addEventListener("mouseenter", () => {
     img.classList.remove("ab-shrink");
-    // restart animation if it was mid-flight
     void img.offsetWidth;
     img.classList.add("ab-grow");
   });
-
-  // Hover out: play shrink+spin (counter-clockwise)
   img.addEventListener("mouseleave", () => {
     img.classList.remove("ab-grow");
     void img.offsetWidth;
     img.classList.add("ab-shrink");
   });
-});
+}
+document.addEventListener("DOMContentLoaded", attachLogoSpin);
+// In case of SPA navigation, re-attach after DOM updates
+if (window.document$ && typeof window.document$.subscribe === "function") {
+  window.document$.subscribe(attachLogoSpin);
+}
 
 // ===== Sticky header title: set the text directly (robust) =====
 document.addEventListener("DOMContentLoaded", () => {
