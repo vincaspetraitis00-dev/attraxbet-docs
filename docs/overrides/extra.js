@@ -1,3 +1,38 @@
+// Aggressively prevent updating the URL hash on scroll or navigation (MkDocs Material)
+(function() {
+  function removeHash() {
+    if (location.hash) {
+      history.replaceState(null, '', location.pathname + location.search);
+    }
+  }
+
+  // Intercept pushState and replaceState to remove hash after navigation
+  const origPushState = history.pushState;
+  const origReplaceState = history.replaceState;
+  history.pushState = function(state, title, url) {
+    if (typeof url === 'string' && url.includes('#')) {
+      url = url.split('#')[0];
+    }
+    return origPushState.call(this, state, title, url);
+  };
+  history.replaceState = function(state, title, url) {
+    if (typeof url === 'string' && url.includes('#')) {
+      url = url.split('#')[0];
+    }
+    return origReplaceState.call(this, state, title, url);
+  };
+
+  // Remove hash on hashchange
+  window.addEventListener('hashchange', removeHash, false);
+
+  // Remove hash after SPA navigation (Material theme)
+  if (window.document$ && typeof window.document$.subscribe === 'function') {
+    window.document$.subscribe(removeHash);
+  }
+
+  // Remove hash on DOMContentLoaded (initial load)
+  document.addEventListener('DOMContentLoaded', removeHash);
+})();
 document.addEventListener("DOMContentLoaded", () => {
   const img = document.querySelector(".md-header .md-logo img");
   if (!img) return;
