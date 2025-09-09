@@ -1,13 +1,16 @@
 
-<div class="ab-hero ab-hero-fairness">
-	<div class="ab-subtitle ab-fairness-highlight">We’re here to help.</div>
+<div class="ab-hero ab-hero-fairness ab-hero-parallax">
+	<div class="ab-subtitle ab-fairness-highlight ab-hero-title">
+		<div class="ab-hero-glow"></div>
+		<span>We’re here to help.</span>
+	</div>
 	<p>
 		We’d love to hear from you — whether it’s feedback, a bug report, or a partnership idea.
 	</p>
 </div>
 
 <div class="ab-section">
-	<div class="ab-section-title ab-green">📬 Contact us</div>
+	<div class="ab-section-title ab-green"> Contact us</div>
 	<div class="ab-section-body">
 		<ul class="ab-fairness-list">
 			<li><b>Email:</b> support@attrax.bet</li>
@@ -18,14 +21,14 @@
 </div>
 
 <div class="ab-section">
-	<div class="ab-section-title ab-green">🐞 Helpful info for bug reports</div>
+	<div class="ab-section-title ab-green"> Helpful info for bug reports</div>
 	<div class="ab-section-body">
 		Include your platform (desktop/mobile), browser version, wallet, approximate time of the issue, and a short description of what you expected vs. what happened. Screenshots or short screen recordings help a lot.
 	</div>
 </div>
 
 <div class="ab-section">
-	<div class="ab-section-title ab-green">🤝 Partnerships</div>
+	<div class="ab-section-title ab-green"> Partnerships</div>
 	<div class="ab-section-body">
 		If you’re building on Abstract or run a community that fits on-chain gaming, reach out. We’re open to co-marketing, tournaments, and themed seasons.
 	</div>

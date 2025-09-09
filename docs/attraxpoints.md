@@ -1,8 +1,11 @@
 
 
 
-<div class="ab-hero ab-hero-fairness">
-	<div class="ab-subtitle ab-fairness-highlight">Earn, climb, and prepare for what’s coming.</div>
+<div class="ab-hero ab-hero-fairness ab-hero-parallax">
+	<div class="ab-subtitle ab-fairness-highlight ab-hero-title">
+		<div class="ab-hero-glow"></div>
+		<span>Earn, climb, and prepare for what’s coming.</span>
+	</div>
 	<p>
 		AttraXPoints (AXP) are the reward backbone of Attrax.Bet. They’re designed to reward active players, fuel competition, and unlock future perks — all while keeping things fun and transparent.
 	</p>
@@ -12,7 +15,7 @@
 </div>
 
 <div class="ab-section">
-	<div class="ab-section-title ab-green">🎁 How to Earn Points</div>
+	<div class="ab-section-title ab-green"> How to Earn Points</div>
 	<div class="ab-section-body">
 		<ul class="ab-fairness-list">
 			<li>First-time sign up bonus – every new account receives <b>XXX AttraXPoints</b>.</li>
@@ -26,7 +29,7 @@
 
 
 <div class="ab-section">
-	<div class="ab-section-title ab-green">🎟️ Using Points</div>
+	<div class="ab-section-title ab-green"> Using Points</div>
 	<div class="ab-section-body">
 		AttraXPoints are designed for future rewards and perks within Attrax.Bet.
 		<ul class="ab-fairness-list">
@@ -38,7 +41,7 @@
 </div>
 
 <div class="ab-section">
-	<div class="ab-section-title ab-green">🚫 Fair Play Only</div>
+	<div class="ab-section-title ab-green"> Fair Play Only</div>
 	<div class="ab-section-body">
 		We want AttraXPoints to stay fair and fun:
 		<ul class="ab-fairness-list">
@@ -49,14 +52,14 @@
 </div>
 
 <div class="ab-section">
-	<div class="ab-section-title ab-green">🏆 Leaderboard</div>
+	<div class="ab-section-title ab-green"> Leaderboard</div>
 	<div class="ab-section-body">
 		All points earned go toward the AttraXPoints Leaderboard. The more you play and claim, the higher you’ll rank. Expect recognition, bragging rights, and special surprises for top players.
 	</div>
 </div>
 
 <div class="ab-section">
-	<div class="ab-section-title ab-green">🔮 What’s Next</div>
+	<div class="ab-section-title ab-green"> What’s Next</div>
 	<div class="ab-section-body">
 		We’re just getting started. New ways to earn, spend, and compete with AttraXPoints will be revealed over time. Expect constant updates, mystery rewards, and surprises designed to keep the competition exciting.<br><br>
 		Stay tuned — the more AttraXPoints you collect, the more valuable they’ll become in the Attrax.Bet ecosystem.
