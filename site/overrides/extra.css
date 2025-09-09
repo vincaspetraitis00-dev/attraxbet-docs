@@ -1,3 +1,49 @@
+/* Parallax hero + mint glow for home page */
+.ab-hero-parallax {
+  position: relative;
+  overflow: visible;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.ab-hero-title-glow-wrap {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+.ab-hero-glow {
+  position: absolute;
+  left: 50%;
+  top: 0;
+  width: 700px;
+  height: 100%;
+  transform: translateX(-50%);
+  background: radial-gradient(ellipse 70% 40% at center, #55DDAAFF 0%, #55DDAACC 60%, transparent 100%);
+  filter: blur(24px) brightness(2.5);
+  pointer-events: none;
+  animation: ab-mint-glow-pulse 3.5s ease-in-out infinite;
+  z-index: 0;
+  display: block;
+}
+.ab-hero-title {
+  position: relative;
+  z-index: 1;
+  transition: transform 0.5s cubic-bezier(.23,1.02,.58,.99);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+.ab-hero-title span {
+  position: relative;
+  z-index: 1;
+}
+@keyframes ab-mint-glow-pulse {
+  0%, 100% { opacity: 0.85; filter: blur(32px); }
+  50% { opacity: 1; filter: blur(40px); }
+}
 /* AttraXPoints section titles: match games page subheaders */
 .ab-section-title {
   font-size: 1.3rem;

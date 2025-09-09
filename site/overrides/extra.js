@@ -1,3 +1,23 @@
+// Hero parallax + mint glow effect for home page
+function setupHeroParallax() {
+  const hero = document.querySelector('.ab-hero-parallax');
+  const title = hero && hero.querySelector('.ab-hero-title');
+  if (!hero || !title) return;
+  function onScroll() {
+    const scrollY = window.scrollY || window.pageYOffset;
+    // Parallax: shift title up to 32px, glow up to 24px
+    const titleShift = Math.min(scrollY * 0.18, 32);
+    const glow = hero.querySelector('.ab-hero-glow');
+    if (title) title.style.transform = `translateY(${titleShift}px)`;
+    if (glow) glow.style.transform = `translate(-50%, ${titleShift * 0.75}px)`;
+  }
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+}
+document.addEventListener('DOMContentLoaded', setupHeroParallax);
+if (window.document$ && typeof window.document$.subscribe === 'function') {
+  window.document$.subscribe(setupHeroParallax);
+}
 function setupBulletsAnimation() {
   document.querySelectorAll('.ab-fairness-list').forEach(fairnessList => {
     const items = Array.from(fairnessList.querySelectorAll('li'));

@@ -1,3 +1,25 @@
+@media (max-width: 400px) {
+  .ab-hero-glow {
+    min-width: 220px;
+    width: 80vw;
+    max-width: 260px;
+    height: 32px;
+    filter: blur(7px) brightness(1.2);
+    background: radial-gradient(ellipse 80% 50% at center, #55DDAA99 0%, #55DDAA33 60%, transparent 100%);
+  }
+}
+@media (max-width: 600px) {
+  .ab-hero-glow {
+    width: 90vw;
+    max-width: 340px;
+    height: 36px;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    filter: blur(8px) brightness(1.2);
+    background: radial-gradient(ellipse 80% 50% at center, #55DDAA88 0%, #55DDAA44 60%, transparent 100%);
+  }
+}
 /* Parallax hero + mint glow for home page */
 .ab-hero-parallax {
   position: relative;
