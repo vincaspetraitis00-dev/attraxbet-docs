@@ -1,3 +1,76 @@
+// --- Slot Machine Animation & Reveal (with viewport trigger) ---
+function abInitSlotMachines() {
+  const slotWords = [
+    ['Sign Up', 'Register', 'Join Now', 'Get Started'],
+    ['Play', 'Spin', 'Try Luck', 'Game On'],
+    ['Get Points', 'Earn', 'Win', 'Level Up']
+  ];
+  const slotMachines = document.querySelectorAll('.ab-slot-machine');
+  // Reset all slot screens
+  slotMachines.forEach((slot, idx) => {
+    const screen = slot.querySelector('.ab-slot-screen');
+    const wordSpan = screen.querySelector('.ab-slot-word');
+    screen.classList.remove('spinning', 'revealed');
+    wordSpan.textContent = slotWords[idx][0];
+    // Remove previous event listeners by cloning
+    const newScreen = screen.cloneNode(true);
+    screen.parentNode.replaceChild(newScreen, screen);
+    // Add hover reveal
+    let spinning = true;
+    newScreen.addEventListener('mouseenter', () => {
+      if (!spinning) newScreen.classList.add('revealed');
+    });
+    newScreen.addEventListener('mouseleave', () => {
+      newScreen.classList.remove('revealed');
+    });
+    newScreen.dataset.spinning = 'true';
+  });
+
+  // Animation trigger logic
+  let hasAnimated = false;
+  function startSlotAnimation() {
+    if (hasAnimated) return;
+    hasAnimated = true;
+    slotMachines.forEach((slot, idx) => {
+      const screen = slot.querySelector('.ab-slot-screen');
+      const wordSpan = screen.querySelector('.ab-slot-word');
+      let spinIdx = 0;
+      let spinning = true;
+      screen.classList.add('spinning');
+      const spinInterval = setInterval(() => {
+        spinIdx = (spinIdx + 1) % slotWords[idx].length;
+        wordSpan.textContent = slotWords[idx][spinIdx];
+      }, 180);
+      setTimeout(() => {
+        clearInterval(spinInterval);
+        wordSpan.textContent = slotWords[idx][0];
+        screen.classList.remove('spinning');
+        spinning = false;
+        screen.dataset.spinning = 'false';
+      }, 2500 + idx * 200);
+    });
+  }
+
+  // Use IntersectionObserver to trigger animation when the first .ab-slot-screen is visible
+  const firstScreen = document.querySelector('.ab-slot-screen');
+  if (window.IntersectionObserver && firstScreen) {
+    const observer = new IntersectionObserver((entries, obs) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          startSlotAnimation();
+          obs.disconnect();
+        }
+      });
+    }, { threshold: 0.5 });
+    observer.observe(firstScreen);
+  } else {
+    startSlotAnimation();
+  }
+}
+document.addEventListener('DOMContentLoaded', abInitSlotMachines);
+if (window.document$ && typeof window.document$.subscribe === 'function') {
+  window.document$.subscribe(abInitSlotMachines);
+}
 // Click-to-reveal logic for fairness page squares
 function setupRevealBoxes() {
   document.querySelectorAll('.ab-reveal-box').forEach(box => {

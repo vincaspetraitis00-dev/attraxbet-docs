@@ -1,3 +1,126 @@
+/* Slot Machine Section */
+
+/* --- Slot Machine Section: Bigger, Responsive, Full Row --- */
+
+/* --- Slot Machine Section: Even Bigger, Responsive, Full Row --- */
+.ab-slot-row {
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  gap: 4vw;
+  margin: 2.5rem 0 1.5rem 0;
+  width: 100%;
+  max-width: 1400px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.ab-slot-machine {
+  position: relative;
+  flex: 1 1 0;
+  min-width: 320px;
+  max-width: 520px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.ab-slot-img {
+  width: 100%;
+  max-width: 420px;
+  min-width: 260px;
+  display: block;
+  margin-bottom: -110px;
+  z-index: 1;
+}
+.ab-slot-screen {
+  position: absolute;
+  top: 112px;
+  left: 48%;
+  transform: translateX(-50%);
+  width: 144px;
+  height: 65px;
+  background: rgba(30,40,50,0.92);
+  border-radius: 3px;
+  box-shadow: 0 0 22px 6px #00ffd0a0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  z-index: 2;
+  cursor: pointer;
+  transition: box-shadow 0.2s;
+}
+.ab-slot-screen:hover {
+  box-shadow: 0 0 32px 10px #00ffd0cc;
+}
+.ab-slot-word {
+  font-family: 'Orbitron', 'Montserrat', sans-serif;
+  font-size: 1.25rem;
+  color: #00ffd0;
+  letter-spacing: 1.2px;
+  font-weight: 700;
+  white-space: nowrap;
+  animation: ab-slot-spin 1.2s cubic-bezier(.6,0,.4,1) infinite;
+  display: inline-block;
+  z-index: 3;
+}
+.ab-slot-screen.spinning .ab-slot-word {
+  animation-play-state: running;
+}
+.ab-slot-screen:not(.spinning) .ab-slot-word {
+  animation: none;
+}
+.ab-slot-desc {
+  display: none;
+  position: absolute;
+  left: 0; right: 0; top: 0; bottom: 0;
+  background: rgba(20,30,40,0.98);
+  color: #fff;
+  font-size: 1.08rem;
+  font-weight: 500;
+  padding: 0.9em 0.8em;
+  border-radius: 14px;
+  z-index: 4;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  transition: opacity 0.18s;
+  opacity: 0;
+  pointer-events: none;
+}
+.ab-slot-screen.revealed .ab-slot-desc {
+  display: flex;
+  opacity: 1;
+  pointer-events: auto;
+}
+.ab-slot-below {
+  text-align: center;
+  margin-top: 6rem;
+  font-size: 1.28rem;
+  color: #00ffd0;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+@keyframes ab-slot-spin {
+  0% { transform: translateY(0); opacity: 1; }
+  20% { transform: translateY(-28px) scaleY(1.1); opacity: 0.7; }
+  40% { transform: translateY(22px) scaleY(0.95); opacity: 0.8; }
+  60% { transform: translateY(-18px) scaleY(1.05); opacity: 0.9; }
+  80% { transform: translateY(12px) scaleY(0.98); opacity: 0.85; }
+  100% { transform: translateY(0); opacity: 1; }
+}
+@media (max-width: 1100px) {
+  .ab-slot-row { gap: 2vw; }
+  .ab-slot-machine { min-width: 180px; max-width: 320px; }
+  .ab-slot-img { max-width: 200px; }
+  .ab-slot-screen { width: 120px; height: 40px; top: 54px; border-radius: 10px; font-size: 1.1rem; }
+}
+@media (max-width: 700px) {
+  .ab-slot-row { flex-direction: column; gap: 2.2rem; align-items: center; }
+  .ab-slot-machine { width: 90vw; max-width: 260px; min-width: 120px; }
+  .ab-slot-img { max-width: 100%; }
+  .ab-slot-screen { width: 90vw; max-width: 240px; min-width: 80px; }
+}
 /* Multiline reveal row for fairness page */
 .ab-reveal-row-multiline {
   justify-content: center;
