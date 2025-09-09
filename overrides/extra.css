@@ -4,8 +4,8 @@
     width: 80vw;
     max-width: 260px;
     height: 32px;
-    filter: blur(7px) brightness(1.2);
-    background: radial-gradient(ellipse 80% 50% at center, #55DDAA99 0%, #55DDAA33 60%, transparent 100%);
+  filter: blur(7px) brightness(0.6);
+  background: radial-gradient(ellipse 80% 50% at center, #55DDAA44 0%, #55DDAA11 60%, transparent 100%);
   }
 }
 @media (max-width: 600px) {
@@ -16,8 +16,8 @@
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
-    filter: blur(8px) brightness(1.2);
-    background: radial-gradient(ellipse 80% 50% at center, #55DDAA88 0%, #55DDAA44 60%, transparent 100%);
+  filter: blur(8px) brightness(0.7);
+  background: radial-gradient(ellipse 80% 50% at center, #55DDAA55 0%, #55DDAA22 60%, transparent 100%);
   }
 }
 /* Parallax hero + mint glow for home page */
