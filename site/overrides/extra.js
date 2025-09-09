@@ -1,3 +1,19 @@
+// Click-to-reveal logic for fairness page squares
+function setupRevealBoxes() {
+  document.querySelectorAll('.ab-reveal-box').forEach(box => {
+    box.addEventListener('click', function() {
+      if (!box.classList.contains('revealed')) {
+        box.classList.add('revealed');
+        const content = box.querySelector('.ab-reveal-content');
+        if (content) content.style.display = 'block';
+      }
+    });
+  });
+}
+document.addEventListener('DOMContentLoaded', setupRevealBoxes);
+if (window.document$ && typeof window.document$.subscribe === 'function') {
+  window.document$.subscribe(setupRevealBoxes);
+}
 // Hero parallax + mint glow effect for home page
 function setupHeroParallax() {
   const hero = document.querySelector('.ab-hero-parallax');
