@@ -1,5 +1,6 @@
 
 
+
 <div class="ab-hero ab-hero-fairness ab-hero-parallax">
 	<div class="ab-hero-title-glow-wrap">
 		<div class="ab-subtitle ab-fairness-highlight ab-hero-title">
@@ -14,8 +15,17 @@
 
 
 <div class="ab-section">
-	<div class="ab-section-title ab-green"> Getting Started</div>
-		<div class="ab-section-body">
+			<div class="ab-section-title ab-green"> Getting Started</div>
+			<!-- Mobile-only simple slot list -->
+			<div class="ab-mobile-slot-list">
+				<button class="ab-mobile-slot-btn" data-mobile-slot="signup">Sign Up</button>
+				<button class="ab-mobile-slot-btn" data-mobile-slot="play">Play</button>
+				<button class="ab-mobile-slot-btn" data-mobile-slot="points">Get Points</button>
+			</div>
+			<div id="ab-mobile-slot-modal" style="display:none;">
+				<div id="ab-mobile-slot-modal-content"></div>
+			</div>
+			<div class="ab-section-body">
 			<div class="ab-slot-row">
 				   <div class="ab-slot-container">
 					   <div class="ab-slot-machine" data-slot="0">

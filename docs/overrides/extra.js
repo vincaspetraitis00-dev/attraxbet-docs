@@ -445,4 +445,27 @@ document.addEventListener("DOMContentLoaded", () => {
   // Watch for drawer mutations (late injection)
   new MutationObserver(killTocBits).observe(document.body, { childList: true, subtree: true });
 });
+// Mobile slot button click handler
+document.addEventListener('DOMContentLoaded', function() {
+  const details = {
+    signup: "Create your account and claim your welcome bonus (XXX AttraXPoints).",
+    play: "Try out our flagship Coinflip game, spin the Slots, or test your luck on the Lucky Wheel.",
+    points: "Earn AttraXPoints for logging in daily, playing, and climbing the leaderboard."
+  };
+  document.querySelectorAll('.ab-mobile-slot-btn').forEach(btn => {
+    btn.addEventListener('click', function() {
+      const key = btn.getAttribute('data-mobile-slot');
+      document.getElementById('ab-mobile-slot-modal-content').textContent = details[key];
+      document.getElementById('ab-mobile-slot-modal').style.display = 'block';
+    });
+  });
+  var modal = document.getElementById('ab-mobile-slot-modal');
+  if (modal) {
+    modal.addEventListener('click', function(e) {
+      if (e.target === modal) {
+        modal.style.display = 'none';
+      }
+    });
+  }
+});
 
