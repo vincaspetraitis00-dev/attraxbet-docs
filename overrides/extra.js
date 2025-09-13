@@ -5,9 +5,10 @@ function abInitSlotMachines() {
     ['Play', 'Spin', 'Try Luck', 'Game On'],
     ['Get Points', 'Earn', 'Win', 'Level Up']
   ];
-  const slotMachines = document.querySelectorAll('.ab-slot-machine');
-  // Reset all slot screens
-  slotMachines.forEach((slot, idx) => {
+  const slotContainers = document.querySelectorAll('.ab-slot-container');
+  // Reset all slot screens and popups
+  slotContainers.forEach((container, idx) => {
+    const slot = container.querySelector('.ab-slot-machine');
     const screen = slot.querySelector('.ab-slot-screen');
     const wordSpan = screen.querySelector('.ab-slot-word');
     screen.classList.remove('spinning', 'revealed');
@@ -15,7 +16,7 @@ function abInitSlotMachines() {
     // Remove previous event listeners by cloning
     const newScreen = screen.cloneNode(true);
     screen.parentNode.replaceChild(newScreen, screen);
-    // Add hover reveal
+    // Add hover/focus reveal for accessibility (popup handled by CSS)
     let spinning = true;
     newScreen.addEventListener('mouseenter', () => {
       if (!spinning) newScreen.classList.add('revealed');
@@ -24,6 +25,13 @@ function abInitSlotMachines() {
       newScreen.classList.remove('revealed');
     });
     newScreen.dataset.spinning = 'true';
+    // Also allow keyboard focus
+    newScreen.addEventListener('focus', () => {
+      if (!spinning) newScreen.classList.add('revealed');
+    });
+    newScreen.addEventListener('blur', () => {
+      newScreen.classList.remove('revealed');
+    });
   });
 
   // Animation trigger logic
@@ -31,7 +39,8 @@ function abInitSlotMachines() {
   function startSlotAnimation() {
     if (hasAnimated) return;
     hasAnimated = true;
-    slotMachines.forEach((slot, idx) => {
+    slotContainers.forEach((container, idx) => {
+      const slot = container.querySelector('.ab-slot-machine');
       const screen = slot.querySelector('.ab-slot-screen');
       const wordSpan = screen.querySelector('.ab-slot-word');
       let spinIdx = 0;
