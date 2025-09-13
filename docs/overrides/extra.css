@@ -1,3 +1,66 @@
+/* --- Slot Machine Container and Popup Overlay --- */
+.ab-slot-container {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex: 1 1 0;
+  min-width: 320px;
+  max-width: 520px;
+}
+.ab-slot-popup {
+  position: absolute;
+  top: -80px;
+  left: 50%;
+  transform: translateX(-50%) translateY(-30%);
+  width: 300px;
+  min-height: 110px;
+  background: rgba(20, 30, 40, 0.98);
+  border-radius: 18px;
+  box-shadow: 0 0 44px 10px #00ffd0cc, 0 0 0 4px #00ffd055;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  opacity: 0;
+  pointer-events: none;
+  z-index: 10;
+  padding: 2.2em 1.2em 1.5em 1.2em;
+  font-family: 'Montserrat', 'Orbitron', sans-serif;
+  font-size: 0.8rem;
+  color: #fff;
+  transition: none;
+}
+.ab-slot-screen:hover ~ .ab-slot-popup,
+.ab-slot-screen:focus ~ .ab-slot-popup {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateX(-50%) translateY(-5%);
+}
+.ab-slot-popup-word {
+  font-size: 1.45em;
+  font-weight: 800;
+  color: #00ffd0;
+  margin-bottom: 0.5em;
+  letter-spacing: 1.2px;
+  text-shadow: 0 0 12px #00ffd0cc, 0 0 2px #fff;
+}
+.ab-slot-popup-desc {
+  font-size: 1.08em;
+  color: #fff;
+  font-weight: 500;
+  margin-bottom: 0.2em;
+}
+@media (max-width: 1100px) {
+  .ab-slot-container { min-width: 180px; max-width: 320px; }
+  .ab-slot-popup { width: 220px; min-height: 100px; font-size: 1rem; padding: 1.2em 0.7em 1em 0.7em; }
+}
+@media (max-width: 700px) {
+  .ab-slot-row { flex-direction: column; gap: 2.2rem; align-items: center; }
+  .ab-slot-container { width: 90vw; max-width: 260px; min-width: 120px; }
+  .ab-slot-popup { width: 90vw; max-width: 240px; min-width: 80px; }
+}
 /* Slot Machine Section */
 
 /* --- Slot Machine Section: Bigger, Responsive, Full Row --- */
@@ -48,6 +111,7 @@
   z-index: 2;
   cursor: pointer;
   transition: box-shadow 0.2s;
+  pointer-events: auto;
 }
 .ab-slot-screen:hover {
   box-shadow: 0 0 32px 10px #00ffd0cc;
@@ -679,4 +743,17 @@ label[for="__toc"],
 
 /* 4) (Optional) Right-hand TOC sidebar — hide if you don't want it at all */
 .md-sidebar--secondary { display: none !important; }
+
+/* --- Prevent text selection and enforce pointer cursor --- */
+.ab-slot-screen,
+.ab-slot-word,
+.ab-slot-popup {
+  user-select: none;
+  -webkit-user-select: none;
+  cursor: default;
+}
+
+.ab-slot-popup {
+  pointer-events: none;
+}
 
