@@ -6,7 +6,7 @@
 	</div>
 
 <p>
-At Attrax.Bet, fairness is at the core of everything we do. Every game, tournament, and competition is powered by on-chain randomness and data, provided through Proof of Play’s Verified Random Number Generator (vRNG). This guarantees that results are generated securely, transparently, and without bias.
+At Attrax Bet, fairness is at the core of everything we do. Every game, PvP tournament, and competition is powered by on-chain randomness and data, provided through Proof of Play’s Verified Random Number Generator (vRNG). This guarantees that results are generated securely, transparently, and without bias.
 </p>
 
 </div>
@@ -27,7 +27,7 @@ At Attrax.Bet, fairness is at the core of everything we do. Every game, tourname
 	<div class="ab-reveal-box" data-reveal="2">
 		<img src="../assets/MineReveal.png" alt="Reveal" />
 		<span class="ab-reveal-label">Reveal</span>
-		<span class="ab-reveal-content" style="display:none;">🛡️ <b class="ab-green">Tamper-proof</b> – once outcomes are generated, neither Attrax.Bet nor any third party can alter them.</span>
+		<span class="ab-reveal-content" style="display:none;">🛡️ <b class="ab-green">Tamper-proof</b> – once outcomes are generated, neither we, nor any third party can alter them.</span>
 	</div>
 </div>
 <div class="ab-reveal-row ab-reveal-row-multiline">
@@ -45,7 +45,7 @@ At Attrax.Bet, fairness is at the core of everything we do. Every game, tourname
 
 
 <div class="ab-frosty-box">
-	<p>We are building a safe and trusted casino. If you ever notice a discrepancy, please <a href="../contact/" style="color:#55DDAA; text-decoration:underline; font-weight:600;">contact us</a> immediately — transparency and accountability are at the core of Attrax.Bet.</p>
+	<p>We are building a safe and trusted casino. If you ever notice a discrepancy, please <a href="../contact/" style="color:#55DDAA; text-decoration:underline; font-weight:600;">contact us</a> immediately — transparency and accountability are at the core of Attrax Bet.</p>
 </div>
 
-At Attrax.Bet, fairness isn’t just a promise — it’s built into the system.
+At Attrax Bet, fairness isn’t just a promise — it’s built into the system.

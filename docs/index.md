@@ -9,7 +9,7 @@
 		</div>
 	</div>
 	<p>
-		Attrax.Bet is a decentralized casino built on the Abstract blockchain — designed for players who value transparency, fairness, and a little frosty fun.
+		Attrax Bet is a decentralized casino built on and for the Abstract community — designed for players who value transparency, fairness, and a little frosty fun.
 	</p>
 </div>
 
@@ -32,11 +32,11 @@
 						   <img src="assets/SlotMachine.png" alt="Slot Machine" class="ab-slot-img" />
 						   <div class="ab-slot-screen">
 							   <span class="ab-slot-word">Sign Up</span>
-							   <span class="ab-slot-desc">Create your account and claim your welcome bonus (XXX AttraXPoints).</span>
+							   <span class="ab-slot-desc">Create your account and claim your welcome bonus (1500 AttraXPoints).</span>
 						   </div>
 						   <div class="ab-slot-popup">
 							   <span class="ab-slot-popup-word">Sign Up</span>
-							   <span class="ab-slot-popup-desc">Create your account and claim your welcome bonus (XXX AttraXPoints).</span>
+							   <span class="ab-slot-popup-desc">Create your account and claim your welcome bonus (1500 AttraXPoints).</span>
 						   </div>
 					   </div>
 				   </div>
@@ -58,16 +58,16 @@
 						   <img src="assets/SlotMachine.png" alt="Slot Machine" class="ab-slot-img" />
 						   <div class="ab-slot-screen">
 							   <span class="ab-slot-word">Get Points</span>
-							   <span class="ab-slot-desc">Earn AttraXPoints for logging in daily, playing, and climbing the leaderboard.</span>
+							   <span class="ab-slot-desc">Earn AttraXPoints (AXP) for logging in daily, playing, and climb the leaderboard.</span>
 						   </div>
 						   <div class="ab-slot-popup">
 							   <span class="ab-slot-popup-word">Get Points</span>
-							   <span class="ab-slot-popup-desc">Earn AttraXPoints for logging in daily, playing, and climbing the leaderboard.</span>
+							   <span class="ab-slot-popup-desc">Earn AttraXPoints (AXP) for logging in daily, playing, and climb the leaderboard.</span>
 						   </div>
 					   </div>
 				   </div>
 			</div>
-			<div class="ab-slot-below">Stay tuned – more rewards, perks, and surprises are coming soon.</div>
+			<div class="ab-slot-below">Stay tuned – more rewards, games, and surprises are coming soon.</div>
 		</div>
 </div>
 
@@ -90,7 +90,7 @@
 		<ul class="ab-fairness-list">
 			<li>On-chain randomness guarantees fair play.</li>
 			<li>Built on Abstract, giving fast, secure, and low-cost transactions.</li>
-			<li>A frosty, premium theme that makes gaming fun and unique.</li>
+			<li>New, nowhere else to be found, frost theme games that make playing fun and unique.</li>
 			<li>A growing ecosystem with competitions, rewards, and community perks.</li>
 		</ul>
 	</div>
@@ -99,7 +99,7 @@
 <div class="ab-section">
 	<div class="ab-section-title ab-green"> What is Abstract?</div>
 	<div class="ab-section-body">
-		Abstract is a next-generation blockchain designed to support decentralized applications like Attrax.Bet. It’s scalable, secure, and cost-efficient, making it the perfect chain to host high-volume, fair casino games.
+		Abstract is a next-generation blockchain designed to support decentralized applications like Attrax.Bet. It’s scalable, secure, and cost-efficient, making it the perfect chain to host high-volume, fair casino games. To learn more and get started on Abstract head over to
 	</div>
 </div>
 

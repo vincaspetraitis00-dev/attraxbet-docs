@@ -914,4 +914,25 @@ label[for="__toc"],
     background: #55ddaa;
   }
 }
+* {
+  cursor: url('/assets/Pointer.png') 0 0, auto !important;
+}
+
+/* Keep your dark background */
+:root { --md-default-bg-color: #1E2738; }
+html, body { background: var(--md-default-bg-color); }
+
+/* ✅ Don't touch .md-main / .md-main__inner / .md-content */
+
+/* Remove the margin collapse that creates the white gaps */
+.md-content__inner > :first-child { margin-top: 0 !important; }
+.md-content__inner > :last-child  { margin-bottom: 0 !important; }
+
+/* Extra safety for h1 used as the first element */
+.md-typeset h1:first-child { margin-top: 0 !important; }
+
+
+
+
+
 
