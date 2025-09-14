@@ -23,6 +23,6 @@
 	</div>
 	<div class="ab-subtitle ab-green" style="font-size:1.3rem; margin-top:2.5rem;"> Coming Soon</div>
 	<div style="margin-bottom:1.5rem;">
-		We’re working on expanding our library with new games like dice, blackjack, and roulette — all carrying the same fast, transparent, and verifiable design.
+		We’re working on expanding our library with new games like dice, blackjack, roulette and PvP games — all carrying the same fast, transparent, and verifiable design.
 	</div>
 </div>
